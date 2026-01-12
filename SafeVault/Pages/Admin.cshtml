@@ -1,0 +1,40 @@
+
+@page "/admin"
+@model AdminModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+
+<h2>Admin Dashboard</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Change Role</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model.Users)
+    {
+        <tr>
+            <td>@user.Username</td>
+            <td>@user.Email</td>
+            <td>@user.Roles</td>
+            <td>
+                <form method="post" asp-page-handler="ChangeRole">
+                    <input type="hidden" name="UserId" value="@user.UserID" />
+                    <select name="NewRole">
+                        <option value="User" selected="@("User" == user.Roles)">User</option>
+                        <option value="Admin" selected="@("Admin" == user.Roles)">Admin</option>
+                    </select>
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

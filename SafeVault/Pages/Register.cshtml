@@ -1,0 +1,47 @@
+
+@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
+
+<h2>Register</h2>
+<form method="post">
+    <div>
+        <label asp-for="Username"></label>
+        <input asp-for="Username" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <button type="submit">Register</button>
+</form>
+
+
+<hr />
+
+<p>
+    Already have an account?
+    <a asp-page="/Index">Log in</a>
+</p>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

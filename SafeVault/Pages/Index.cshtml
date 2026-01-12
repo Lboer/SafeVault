@@ -1,0 +1,44 @@
+﻿
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-info">@Model.Message</div>
+}
+
+@if (!string.IsNullOrEmpty(Model.Token))
+{
+    <div class="alert alert-info">@Model.Token</div>
+}
+
+<h2>Login</h2>
+<form method="post" asp-page-handler="Login">
+    <div>
+        <label asp-for="Username"></label>
+        <input asp-for="Username" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <button type="submit">Login</button>
+</form>
+
+<hr />
+
+<p>
+    Don't have an account?
+    <a asp-page="/Register">Register here</a>
+</p>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
